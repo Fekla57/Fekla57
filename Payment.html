@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Оплата</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+  <li><a href="file:///C:/Student/%D0%A5%D0%BE%D1%80%D0%B5%D0%B2%D0%B0,%20%D0%93%D0%BB%D1%83%D1%88%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%20(%D0%91%D0%A2-151)/%D0%9B%D1%8D%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3/1542784090.layoutit/layoutit/src/index.html">Главная</a></li>
+				<li><a href="file:///C:/Student/%D0%A5%D0%BE%D1%80%D0%B5%D0%B2%D0%B0,%20%D0%93%D0%BB%D1%83%D1%88%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%20(%D0%91%D0%A2-151)/%D0%9B%D1%8D%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3/News.html">Новости</a></li>
+				<li><a href="file:///C:/Student/%D0%A5%D0%BE%D1%80%D0%B5%D0%B2%D0%B0,%20%D0%93%D0%BB%D1%83%D1%88%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%20(%D0%91%D0%A2-151)/%D0%9B%D1%8D%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3/Contacts.html">Контакты</a></li>
+				<li><a href="file:///C:/Student/%D0%A5%D0%BE%D1%80%D0%B5%D0%B2%D0%B0,%20%D0%93%D0%BB%D1%83%D1%88%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%20(%D0%91%D0%A2-151)/%D0%9B%D1%8D%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3/Shop.html"> Магазин</a></li>
+				<li><a href="file:///C:/Student/%D0%A5%D0%BE%D1%80%D0%B5%D0%B2%D0%B0,%20%D0%93%D0%BB%D1%83%D1%88%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%20(%D0%91%D0%A2-151)/%D0%9B%D1%8D%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3/Payment.html">Оплата</a></li>
+				<li><a href="file:///C:/Student/%D0%A5%D0%BE%D1%80%D0%B5%D0%B2%D0%B0,%20%D0%93%D0%BB%D1%83%D1%88%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2%D0%B0%20(%D0%91%D0%A2-151)/%D0%9B%D1%8D%D0%BD%D0%B4%D0%B8%D0%BD%D0%B3/Delivery.html">Доставка </a><li>
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				<p align=center> Оплата
+			</h3>
+			<p>
+				<strong>Способы оплаты:</strong> 
+				<div>
+				1) Банковские карты (Visa, MasterCard, Maestro);
+			</div>
+			<div>
+				2) Электронные деньги (Яндекс Деньги, Яндекс Форма);
+			</div>
+			<div>
+				3) Наличные (оплата производится в пунктах выдачи товаров);
+			</div>
+			<div>
+				4) Оплата PayPal
+			</div>
+			<div>
+				<strong> <p align=center>Оплата PayPal</strong>
+			</div>
+			<div id="paypal-button-container"></div>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script> 
+// Render the PayPal button
+paypal.Button.render({
+// Set your environment
+env: 'sandbox', // sandbox | production
+
+// Specify the style of the button
+style: {
+  layout: 'vertical',  // horizontal | vertical
+  size:   'medium',    // medium | large | responsive
+  shape:  'rect',      // pill | rect
+  color:  'gold'       // gold | blue | silver | white | black
+},
+
+// Specify allowed and disallowed funding sources
+//
+// Options:
+// - paypal.FUNDING.CARD
+// - paypal.FUNDING.CREDIT
+// - paypal.FUNDING.ELV
+funding: {
+  allowed: [
+    paypal.FUNDING.CARD,
+    paypal.FUNDING.CREDIT
+  ],
+  disallowed: []
+},
+
+// PayPal Client IDs - replace with your own
+// Create a PayPal app: https://developer.paypal.com/developer/applications/create
+client: {
+  sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+  production: '<insert production client id>'
+},
+
+payment: function (data, actions) {
+  return actions.payment.create({
+    payment: {
+      transactions: [
+        {
+          amount: {
+            total: '0.01',
+            currency: 'USD'
+          }
+        }
+      ]
+    }
+  });
+},
+
+onAuthorize: function (data, actions) {
+  return actions.payment.execute()
+    .then(function () {
+      window.alert('Payment Complete!');
+    });
+}
+}, '#paypal-button-container');
+</script>
+
+			</p>
+		</div>
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
